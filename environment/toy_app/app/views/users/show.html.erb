@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user %>
+
+<div>
+  <%= link_to "Edit this user", edit_user_path(@user) %> |
+  <%= link_to "Back to users", users_path %>
+
+  <p>First post</p>
+  <%= @user.microposts.first.content %>
+
+  <%= button_to "Destroy this user", @user, method: :delete %>
+</div>
