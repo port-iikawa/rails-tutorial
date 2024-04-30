@@ -3,7 +3,7 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name: "Example User", email: "user@example.com",
-    password: "foobar12", password_confirmation: "foobar12")
+                     password: "foobar12", password_confirmation: "foobar12")
   end
 
   test "should_be valid" do
@@ -32,8 +32,8 @@ class UserTest < ActiveSupport::TestCase
 
   test "email validation should accept valid addresses" do
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
-                      first.last@foo.jp alice+bob@baz.cn a@b.b.com a@a.b-c.com]
-    valid_addresses.each do | valid_address |
+                         first.last@foo.jp alice+bob@baz.cn a@b.b.com a@a.b-c.com]
+    valid_addresses.each do |valid_address|
       @user.email = valid_address
       assert @user.valid?, "#{valid_address.inspect} should be valid"
     end
@@ -70,5 +70,9 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 7
     assert_not @user.valid?
   end
-  
+
+  test "password_confirmation should require" do
+    @user.password_confirmation = nil
+    assert_not @user.valid?
+  end
 end
