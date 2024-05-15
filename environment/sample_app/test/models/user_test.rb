@@ -72,7 +72,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "password_confirmation should require" do
-    @user.password_confirmation = nil
+    @user.password_confirmation = ""
     assert_not @user.valid?
   end
 
