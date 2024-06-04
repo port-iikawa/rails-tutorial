@@ -37,7 +37,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   host = "127.0.0.1:3000"
   config.action_mailer.default_url_options = {host:, protocol: 'http'}
@@ -50,9 +50,9 @@ Rails.application.configure do
     user_name: ENV['MAILGUN_SMTP_LOGIN'],
     password: ENV['MAILGUN_SMTP_PASSWORD'],
     domain: host,
-    authentication: :plain
+    authentication: :plain,
+    enable_starttls_auto: true
   }
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
