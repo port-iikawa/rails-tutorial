@@ -25,7 +25,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false
@@ -34,24 +34,24 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
 
   host = "127.0.0.1:3000"
-  config.action_mailer.default_url_options = {host:, protocol: 'http'}
+  config.action_mailer.default_url_options = { host:, protocol: "http" }
 
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     port: 587,
     address: "smtp.mailgun.org",
-    user_name: ENV['MAILGUN_SMTP_LOGIN'],
-    password: ENV['MAILGUN_SMTP_PASSWORD'],
+    user_name: ENV["MAILGUN_SMTP_LOGIN"],
+    password: ENV["MAILGUN_SMTP_PASSWORD"],
     domain: host,
     authentication: :plain,
-    enable_starttls_auto: true
+    enable_starttls_auto: true,
   }
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
